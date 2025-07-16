@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_text/loginPage/loginpage.dart';
 import 'package:flutter_text/loginPage/snackbar.dart';
 import 'package:flutter_text/loginPage/theme.dart';
+import 'package:flutter_text/mainpage/anaSayfa.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class SignIn extends StatefulWidget {
@@ -147,24 +149,44 @@ class _SignInState extends State<SignIn> {
                       tileMode: TileMode.clamp),
                 ),
                 child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: CustomTheme.loginGradientEnd,
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontFamily: 'WorkSansBold'),
+                    highlightColor: Colors.transparent,
+                    splashColor: CustomTheme.loginGradientEnd,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 42.0),
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontFamily: 'WorkSansBold'),
+                      ),
                     ),
-                  ),
-                  onPressed: () => CustomSnackBar(
-                    context,
-                    const Text('Login button pressed'),
-                  ),
-                ),
+                    onPressed: () {
+                      String email = loginEmailController.text.trim();
+                      String password = loginPasswordController.text;
+
+                      if (!email.contains('@')) {
+                        CustomSnackBar(
+                          context,
+                          const Text('Please enter a valid email address.'),
+                        );
+                        return;
+                      }
+
+                      if (password.length < 8) {
+                        CustomSnackBar(
+                          context,
+                          const Text('Password must be at least 8 characters.'),
+                        );
+                        return;
+                      }
+
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const anaSayfa()));
+                    }),
               )
             ],
           ),

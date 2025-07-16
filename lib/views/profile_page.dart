@@ -147,21 +147,43 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               // Account settings
-              ListTile(
-                leading: Image.asset("resimler/boskalp.png"),
-                title: const Text(
-                  "Account settings",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                ),
-                trailing: const Icon(Icons.chevron_right, color: Colors.black),
-                onTap: () {},
-              ),
+              _Ayarlar(name: "Account settings",resim: "resimler/settings.jpeg",),
+              _Ayarlar(name: "Get help",resim: "resimler/gethelp.jpeg",),
+              _Ayarlar(name: "View profile",resim: "resimler/viewProfile.jpeg",),
+              _Ayarlar(name: "Privacy",resim: "resimler/privacy.jpeg",),
+              Divider(thickness: 1,indent: 16,endIndent: 16,),
+              _Ayarlar(name: "Refer a host",resim: "resimler/refer.jpeg",),
+              _Ayarlar(name: "Find a co-host",resim: "resimler/find.jpeg",),
+              _Ayarlar(name: "Legal",resim: "resimler/legal.jpeg",),
+              _Ayarlar(name: "Log out",resim: "resimler/logout.jpeg",),
               const SizedBox(height: 16),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Ayarlar extends StatelessWidget {
+  final String name;
+  final String resim;
+  const _Ayarlar({
+    required this.name,
+    required this.resim,
+    
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.asset(resim,fit: BoxFit.cover,),
+      title:  Text(
+        name,
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+      ),
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
+      onTap: () {},
     );
   }
 }

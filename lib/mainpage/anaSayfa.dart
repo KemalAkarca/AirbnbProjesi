@@ -27,7 +27,8 @@ class _anaSayfaState extends State<anaSayfa>
   late TabController
       _tabController; // late demek bu değişkeni hemen başlatmıyorum ama ileride kesinlikle başlatacağım
 
-  int _currentIndex = 0; //uygulamanın hangi sekmesinin (tab’ının) şu anda aktif olduğunu saklayan bir durum (state) değişkenidir.
+  int _currentIndex =
+      0; //uygulamanın hangi sekmesinin (tab’ının) şu anda aktif olduğunu saklayan bir durum (state) değişkenidir.
 
   @override
   void initState() {
@@ -45,74 +46,90 @@ class _anaSayfaState extends State<anaSayfa>
 
   @override
   Widget build(BuildContext context) {
-     
     return Scaffold(
       backgroundColor: Colors.white,
       body: IndexedStack(
-        index: _currentIndex,// hangi sayfanın gösterileceği belirlenir:
+        index: _currentIndex,
         children: [
-            NestedScrollView(
-          // NestedScrollView: SliverAppBar + TabBarView uyumu için
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              expandedHeight: 281, //genişlemiş halde kullanılan yüksekliği
-              pinned: true, //scroll edildiğinde üstte sabit kalsın
-              elevation: 24,
-              backgroundColor: Colors.white,
-              flexibleSpace: FlexibleSpaceBar(
-                // Flexible yani esneyen bir alan oluşturuyoruz
-                background: SafeArea(
-                  // Çeşitli sayfalar için güvenli bir alan
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 20), //yatay ve dikey boşluk
-                    child: AppBarWithTabs(
-                      isSearchActive: isSearchActive, //arama aktif mi kontrolü
-                      controller: _controller, //TextEditing kontrolü
-                      onTap: () {
-                        setState(() {
-                          isSearchActive = true;
-                        }); // basınca aktif duruma getirecek.
-                      },
-                      tabController: _tabController, //Sekme geçişlerinin kontrolü
-                    ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: Container(
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 20,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 12),
+                      const Icon(Icons.search, color: Colors.black, size: 30),
+                      const SizedBox(width: 8),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isSearchActive = true;
+                          });
+                        },
+                        child: SearchTextOrField(
+                          isSearchActive: isSearchActive,
+                          controller: _controller,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              bottom: TabBar(
+              TabBar(
                 controller: _tabController,
-                indicatorColor: Colors.black,
+                indicatorColor: Colors.transparent,
                 labelColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
-                tabs: const [
-                  Tab(text: "Homes"),
-                  Tab(text: "Experiences"),
-                  Tab(text: "Services"),
+                tabs: [
+                  TabsElemanlari(
+                      title: "Homes", resimyolu: "resimler/homes.png.png"),
+                  TabsElemanlari(
+                      title: "Experiences",
+                      resimyolu: "resimler/experiences.png.png"),
+                  TabsElemanlari(
+                      title: "Services",
+                      resimyolu: "resimler/services.png.png"),
                 ],
               ),
-            ),
-          ],
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              HomesContent(), // burayı kendi widget’ınla değiştir
-              ExperiencesContent(),
-              ServicesContent(),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    HomesContent(),
+                    ExperiencesContent(),
+                    ServicesContent(),
+                  ],
+                ),
+              ),
             ],
           ),
-        ),
-         WishlistPage(),
-         TripsPage(),
-         MessagesPage(),
-         ProfilePage(),
+          WishlistPage(),
+          TripsPage(),
+          MessagesPage(),
+          ProfilePage(),
         ],
-        
       ),
       bottomNavigationBar: Bottomnavbar(
-        currentIndex: _currentIndex, // hangi item’ın seçili olduğu kontrol edilir:
+        currentIndex: _currentIndex,
         ontap: (index) {
           setState(() {
-            _currentIndex = index; //yeni değere güncellenir ve IndexedStack’in index parametresi değiştiği için ekran anında güncellenir.
+            _currentIndex = index;
           });
         },
       ),
@@ -602,10 +619,13 @@ class SearchTextOrField extends StatelessWidget {
               },
             ),
           )
-        : Text(
-            // eğer basılmadıysa böyle bir text gözükür
-            "Start your search",
-            style: TextStyle(color: Colors.black, fontSize: 20),
+        : Align(
+            alignment: Alignment.center,
+            child: Text(
+              // eğer basılmadıysa böyle bir text gözükür
+              "Start your search",
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
           );
   }
 }

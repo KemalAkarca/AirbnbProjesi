@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_text/loginPage/loginpage.dart';
 import 'package:flutter_text/loginPage/snackbar.dart';
 import 'package:flutter_text/loginPage/theme.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -245,7 +245,46 @@ class _SignUpState extends State<SignUp> {
                           fontFamily: 'WorkSansBold'),
                     ),
                   ),
-                  onPressed: () => _toggleSignUpButton(),
+                  onPressed: () {
+                    String name = signupNameController.text.trim();
+  String email = signupEmailController.text.trim();
+  String password = signupPasswordController.text;
+  String confirmPassword = signupConfirmPasswordController.text;
+
+  if (name.isEmpty) {
+    CustomSnackBar(
+      context,
+      const Text('Please enter your name.'),
+    );
+    return;
+  }
+
+  if (!email.contains('@')) {
+    CustomSnackBar(
+      context,
+      const Text('Please enter a valid email address.'),
+    );
+    return;
+  }
+
+  if (password.length < 8) {
+    CustomSnackBar(
+      context,
+      const Text('Password must be at least 8 characters.'),
+    );
+    return;
+  }
+
+  if (password != confirmPassword) {
+    CustomSnackBar(
+      context,
+      const Text('Passwords do not match.'),
+    );
+    return;
+  }
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
                 ),
               )
             ],
