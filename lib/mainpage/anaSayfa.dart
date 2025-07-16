@@ -464,7 +464,7 @@ class GenisCardYapisi extends StatelessWidget {
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
+                child: Image.asset(
                   resim_yolu, // Örnek resim
                   width: 100,
                   height: 100,

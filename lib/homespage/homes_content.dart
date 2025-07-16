@@ -51,7 +51,7 @@ class HomesContent extends StatelessWidget {
               )),
           SagaKaydirmaBasligi(baslik: "Stay near Rustavelli"),
           SizedBox(
-            height: 220,
+            height: 280,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [

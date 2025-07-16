@@ -70,7 +70,7 @@ class _ServicesContentState extends State<ServicesContent> {
           ),
           SagaKaydirmaBasligi(baslik: "Chefs"),
           SizedBox(
-            height: 260,
+            height: 280,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
@@ -148,7 +148,7 @@ class _ServicesContentState extends State<ServicesContent> {
           ),
           SagaKaydirmaBasligi(baslik: "Massage"),
           SizedBox(
-            height: 260,
+            height: 280,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [

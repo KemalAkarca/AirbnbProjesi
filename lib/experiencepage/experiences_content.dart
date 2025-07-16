@@ -30,7 +30,7 @@ class ExperiencesContent extends StatelessWidget {
                   guestFavorite: false,
                 ),
                 KaydirmaliBuyukCardeX(
-                  imageUrl: "resimler/Agenda.png.jpg",
+                  imageUrl: "resimler/agenda.png.jpg",
                   location: "Celebrate happy hour with Ghia's founder",
                   details: "Eskisehir/Turkiye",
                   rating: "From 7,053 ₺/guest",
@@ -101,14 +101,17 @@ class ExperiencesContent extends StatelessWidget {
           //Popular with travelers from your area
           Row(
             children: [
-              SizedBox(
-                width: 16,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
+              SizedBox(width: 16),
+              Expanded(
                 child: Text(
                   "Popular with travelers from your area",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  textAlign: TextAlign.left,
                 ),
               ),
             ],
@@ -147,11 +150,9 @@ class ExperiencesContent extends StatelessWidget {
                   rating: "",
                   guestFavorite: false,
                 ),
-               
               ],
             ),
           ),
-         
         ],
       ),
     );
@@ -272,7 +273,7 @@ class _KaydirmaliBuyukCardeXState extends State<KaydirmaliBuyukCardeX> {
                       color: Colors.grey.shade700,
                       fontSize: 12,
                     ),
-                    maxLines: 1, //taşmayı engellemek için 
+                    maxLines: 1, //taşmayı engellemek için
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 2),
@@ -289,4 +290,3 @@ class _KaydirmaliBuyukCardeXState extends State<KaydirmaliBuyukCardeX> {
     );
   }
 }
-

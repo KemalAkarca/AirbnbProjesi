@@ -339,7 +339,7 @@ class TripsPage extends StatelessWidget {
                 border: Border.all(color: Colors.grey.shade200, width: 1),
               ),
               child: SizedBox(
-                height: 320,
+                height: 325,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -406,20 +406,39 @@ class TripsPage extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(25)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Find past trips in your Profile >",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Image.asset("resimler/valiz.jpeg")
-                  ],
-                ),
+                child:Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Flexible(
+      flex: 2,
+      child: Text(
+        "Find past trips in your Profile >",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        softWrap: true,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+      ),
+    ),
+    Flexible(
+      flex: 1,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: 60, 
+          maxHeight: 60, 
+        ),
+        child: Image.asset(
+          "resimler/valiz.jpeg",
+          fit: BoxFit.contain,
+        ),
+      ),
+    ),
+  ],
+)
+
               ),
             ),
             SizedBox(

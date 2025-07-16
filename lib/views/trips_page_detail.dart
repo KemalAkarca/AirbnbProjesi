@@ -11,7 +11,7 @@ class AsagiTimeLineTile extends StatelessWidget {
       children: [
         TimelineTile(
           alignment: TimelineAlign.manual,
-          lineXY: 0.0, // Çubuğu tamamen sola hizala
+          lineXY: 0.0,
           isFirst: true,
           indicatorStyle: IndicatorStyle(
             width: 40,
@@ -34,44 +34,42 @@ class AsagiTimeLineTile extends StatelessWidget {
             ),
           ),
           endChild: Padding(
-            padding: EdgeInsets.all(16),
-            child: SizedBox(
-              width: double.infinity,
-              child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                elevation: 8,
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.white,
-                          ),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(25),
-                              child: Image.asset(
-                                "resimler/kapi1.jpeg",
-                                fit: BoxFit.cover,
-                                height: 85,
-                                width: 85,
-                              ))),
-                      SizedBox(
-                        width: 16,
+            padding: const EdgeInsets.all(16),
+            child: Card(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              elevation: 8,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          "resimler/kapi1.jpeg",
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      const Text(
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Text(
                         "Check in after 3:00 PM",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                        softWrap: true,
+                        overflow: TextOverflow.visible,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -79,10 +77,8 @@ class AsagiTimeLineTile extends StatelessWidget {
           afterLineStyle: LineStyle(color: Colors.grey.shade200, thickness: 1),
         ),
         Positioned(
-          top: 15, // 🔔 Burayı ince ayarlayabilirsin
-          left: 16 +
-              20 -
-              8, // 16 (padding) + 20 (radius) - 10 (yaklaşık text offset)
+          top: 15,
+          left: 28,
           child: const Text(
             "Sat",
             style: TextStyle(
@@ -108,7 +104,7 @@ class YukariTimeLineTile extends StatelessWidget {
         TimelineTile(
           alignment: TimelineAlign.manual,
           lineXY: 0.0,
-          isLast: true, // 🔔 Çizgi yukarı doğru olacak
+          isLast: true,
           indicatorStyle: IndicatorStyle(
             width: 40,
             height: 40,
@@ -131,65 +127,50 @@ class YukariTimeLineTile extends StatelessWidget {
           ),
           endChild: Padding(
             padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              width: double.infinity,
-              child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                elevation: 8,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              offset: const Offset(2, 2),
-                              blurRadius: 8,
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.asset(
-                            "resimler/kapi2.jpeg",
-                            fit: BoxFit.cover,
-                            height: 85,
-                            width: 85,
-                          ),
+            child: Card(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              elevation: 8,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          "resimler/kapi2.jpeg",
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: Text(
-                          "Check out before 11:00 AM",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Text(
+                        "Check out before 11:00 AM",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
                         ),
+                        softWrap: true,
+                        overflow: TextOverflow.visible,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-          beforeLineStyle: LineStyle(
-            color: Colors.grey.shade200,
-            thickness: 1,
-          ),
+          beforeLineStyle: LineStyle(color: Colors.grey.shade200, thickness: 1),
         ),
         Positioned(
-          top: 40, // 🔔 Yuvarlak indicator'dan sonra altına konumlandır
-          left: 16 + 20 - 10, // aynı hizayı koru
+          top: 40,
+          left: 26,
           child: const Text(
             "Sat",
             style: TextStyle(
